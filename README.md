@@ -16,14 +16,14 @@ Varianta blas: \
     argument, am creeat 3 matrice auxiliare: A_2 - pe care am initializat-o cu
     valorile din matricea A si in care am retinut rezultatul A*A si matricele
     C si D in care a retinut rezultatele celor 2 inmultiri: B × At si A^2 × B.\
-    La final, am adunat cele 2 matrice C si D.
+    La final, am adunat cele 2 matrice C si D.\
 \
 Varianta neoptimizata:\
     Aceasta implementeaza operatia data, fara imbunatatiri, dar care tine cont
     de faptul ca A este o matrice superior triunghiulara.\
     Am alocat spatiu pt At, A^2, 2 matrice auxiliare pentru a tine rezultatul
     celor 2 inmultiri si matricea resultat. Am calculat mai intai A transpus si
-    A^2, apoi inmultirile. La final, am adunat cele 2 matrice rezultate.
+    A^2, apoi inmultirile. La final, am adunat cele 2 matrice rezultate.\
 \
 Varianta optimizata:\
     Varianta optimizata are aceeasi complexitate temporala ca cea neoptimizata
@@ -87,7 +87,7 @@ Varianta optimizata\
     Run=./tema2_opt_m: N=1200:  Time=5.920054\
     Run=./tema2_opt_m: N=1400:  Time=9.871972\
     <<< Bonus=10p >>>\
-
+\
 Opt_f \
     Run=./tema2_opt_f: N=400:   Time=0.192342\
     Run=./tema2_opt_f: N=600:   Time=0.567373\
