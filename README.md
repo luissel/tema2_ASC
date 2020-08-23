@@ -16,15 +16,15 @@ Varianta blas: \
     argument, am creeat 3 matrice auxiliare: A_2 - pe care am initializat-o cu
     valorile din matricea A si in care am retinut rezultatul A*A si matricele
     C si D in care a retinut rezultatele celor 2 inmultiri: B × At si A^2 × B.\
-    La final, am adunat cele 2 matrice C si D.\
-
+    La final, am adunat cele 2 matrice C si D.
+\
 Varianta neoptimizata:\
     Aceasta implementeaza operatia data, fara imbunatatiri, dar care tine cont
     de faptul ca A este o matrice superior triunghiulara.\
     Am alocat spatiu pt At, A^2, 2 matrice auxiliare pentru a tine rezultatul
     celor 2 inmultiri si matricea resultat. Am calculat mai intai A transpus si
-    A^2, apoi inmultirile. La final, am adunat cele 2 matrice rezultate.\
-
+    A^2, apoi inmultirile. La final, am adunat cele 2 matrice rezultate.
+\
 Varianta optimizata:\
     Varianta optimizata are aceeasi complexitate temporala ca cea neoptimizata
     O(n^3)).\
@@ -43,8 +43,8 @@ Opt_f_extra:\
     Am mai folosit flag-ul -funroll-loops care optimizeaza buclele si elimina
     dead code-ul. Face unroll buclelor al caror numar de iteratii poate fi 
     determinat la momentul compilarii sau la intrarea in bucla si elimina 
-    buclele cu un numar mic constant de iteratii. \
-
+    buclele cu un numar mic constant de iteratii.
+\
 Analiza performantelor pentru cele 5 variante\
     Cum era de asteptat, varianta neoptimizata a fost cea mai lenta.\
     Varianta blas a fost cea mai rapida, datorita functiilor pentru inmultirea
@@ -102,4 +102,4 @@ Opt_f_extra\
     Run=./tema2_opt_f_extra: N=800:     Time=1.088396\
     Run=./tema2_opt_f_extra: N=1000:    Time=2.055908\
     Run=./tema2_opt_f_extra: N=1200:    Time=3.427255\
-    Run=./tema2_opt_f_extra: N=1400:    Time=5.599964\
+    Run=./tema2_opt_f_extra: N=1400:    Time=5.599964
