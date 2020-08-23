@@ -1,2 +1,105 @@
 # tema2_ASC
-Tema 2 Arhitecturi si Sisteme de Calcul UPB 2020
+Tema 2 Arhitecturi si Sisteme de Calcul UPB 2020\
+\
+Tema 2 - ASC\
+Chirita Maria-Luissa 332CA
+\
+Inmultire de matrice: C = B × At + A^2 × B\
+\
+Varianta blas: \
+    Pentru blas, am folosit functia dtrmm care tine cont de faptul ca A este
+    o matrice triunghiulara.\
+    Pentru inmultirea cu matricea transpusa, am activat flag-ul de transpunere,
+    iar pentru cea cu matrice superior triunghulara, am activat flagul 
+    corespunzator.\
+    Pentru ca functia scrie rezultatul inmultirii in a 2-a matrice data ca
+    argument, am creeat 3 matrice auxiliare: A_2 - pe care am initializat-o cu
+    valorile din matricea A si in care am retinut rezultatul A*A si matricele
+    C si D in care a retinut rezultatele celor 2 inmultiri: B × At si A^2 × B.\
+    La final, am adunat cele 2 matrice C si D.\
+
+Varianta neoptimizata:\
+    Aceasta implementeaza operatia data, fara imbunatatiri, dar care tine cont
+    de faptul ca A este o matrice superior triunghiulara.\
+    Am alocat spatiu pt At, A^2, 2 matrice auxiliare pentru a tine rezultatul
+    celor 2 inmultiri si matricea resultat. Am calculat mai intai A transpus si
+    A^2, apoi inmultirile. La final, am adunat cele 2 matrice rezultate.\
+
+Varianta optimizata:\
+    Varianta optimizata are aceeasi complexitate temporala ca cea neoptimizata
+    O(n^3)).\
+    In implememntarea acesteia am folosit pointeri care sa optimizeze accesul
+    la memorie (pe linii/coloane) si register sum pentru inmultiri, astfel incat
+    sa nu accesez mereu memoria din matrice, ci doar o data la N operatii. \
+    In plus, am tinut cont de fiecare data de matricele triunghiulare.\
+\
+Opt_f_extra:\
+    Am folosit flag-ul -ffast-math care ii spune compilatorului sa efectueze 
+    optimizari mai agresive cu virgulă flotantă. Acesta activeaza la randul sau
+    alte cateva flag-uri, care permit optimizari pentru operatiile cu virgula 
+    flotanta care presupun ca argumentele si rezultatele sunt valide. Acestea
+    permit reasocieri si transformari arbitrare fara garantii de precizie. De 
+    asemenea, nu încearca sa pastreze semnul zerourilor.\
+    Am mai folosit flag-ul -funroll-loops care optimizeaza buclele si elimina
+    dead code-ul. Face unroll buclelor al caror numar de iteratii poate fi 
+    determinat la momentul compilarii sau la intrarea in bucla si elimina 
+    buclele cu un numar mic constant de iteratii. \
+
+Analiza performantelor pentru cele 5 variante\
+    Cum era de asteptat, varianta neoptimizata a fost cea mai lenta.\
+    Varianta blas a fost cea mai rapida, datorita functiilor pentru inmultirea
+    matricelor din biblioteca atlas.\
+    Se poate observa ca folosirea pointerilor si detectarea constantelor din
+    bucle au dus la o scadere semnificativa a timpului, optimizand accesul la
+    memorie (varianta optimizata vs varianta neoptimizata).\
+    Utilizarea flag-urilor extra -ffast-math si -funroll-loops au adus
+    optimizari in plus (precizate mai sus) fata de O3, optimizand buclele, 
+    eliminand codul nefolosit si facand optimizari matematice mai agresive.\
+\
+Am afisat mai jos timpii obtinuti in urma rularii celor 5 executabile pe 6 
+teste cu valori diferite pentru N. \
+\
+De asemenea, am generat un grafic pe baza timpilor de mai jos, pe care l-am
+adaugat in arhiva.\
+\
+Teste: 400, 600, 800, 1000, 1200, 1400\
+Blas\
+    Run=./tema2_blas: N=400:    Time=0.052798\
+    Run=./tema2_blas: N=600:    Time=0.131366\
+    Run=./tema2_blas: N=800:    Time=0.209917\
+    Run=./tema2_blas: N=1000:   Time=0.392809\
+    Run=./tema2_blas: N=1200:   Time=0.695161\
+    Run=./tema2_blas: N=1400:   Time=1.065794\
+\
+Varianta neoptimizata\
+    Run=./tema2_neopt: N=400:   Time=0.809230\
+    Run=./tema2_neopt: N=600:   Time=2.575775\
+    Run=./tema2_neopt: N=800:   Time=6.201940\
+    Run=./tema2_neopt: N=1000:  Time=11.694534\
+    Run=./tema2_neopt: N=1200:  Time=20.260248\
+    Run=./tema2_neopt: N=1400:  Time=32.887772\
+\
+Varianta optimizata\
+    Run=./tema2_opt_m: N=400:   Time=0.279478\
+    Run=./tema2_opt_m: N=600:   Time=0.811239\
+    Run=./tema2_opt_m: N=800:   Time=1.893535\
+    Run=./tema2_opt_m: N=1000:  Time=3.451339\
+    Run=./tema2_opt_m: N=1200:  Time=5.920054\
+    Run=./tema2_opt_m: N=1400:  Time=9.871972\
+    <<< Bonus=10p >>>\
+
+Opt_f \
+    Run=./tema2_opt_f: N=400:   Time=0.192342\
+    Run=./tema2_opt_f: N=600:   Time=0.567373\
+    Run=./tema2_opt_f: N=800:   Time=1.167636\
+    Run=./tema2_opt_f: N=1000:  Time=2.168852\
+    Run=./tema2_opt_f: N=1200:  Time=3.811498\
+    Run=./tema2_opt_f: N=1400:  Time=6.328513\
+\
+Opt_f_extra\
+    Run=./tema2_opt_f_extra: N=400:     Time=0.124962\
+    Run=./tema2_opt_f_extra: N=600:     Time=0.405832\
+    Run=./tema2_opt_f_extra: N=800:     Time=1.088396\
+    Run=./tema2_opt_f_extra: N=1000:    Time=2.055908\
+    Run=./tema2_opt_f_extra: N=1200:    Time=3.427255\
+    Run=./tema2_opt_f_extra: N=1400:    Time=5.599964\
