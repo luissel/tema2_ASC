@@ -43,7 +43,7 @@ Opt_f_extra:\
     Am mai folosit flag-ul -funroll-loops care optimizeaza buclele si elimina
     dead code-ul. Face unroll buclelor al caror numar de iteratii poate fi 
     determinat la momentul compilarii sau la intrarea in bucla si elimina 
-    buclele cu un numar mic constant de iteratii.
+    buclele cu un numar mic constant de iteratii.\
 \
 Analiza performantelor pentru cele 5 variante\
     Cum era de asteptat, varianta neoptimizata a fost cea mai lenta.\
